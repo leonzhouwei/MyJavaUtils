@@ -23,19 +23,23 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class XlsWriter {
 	
+	public enum MODE {
+		APPEND, WRITE
+	}
+	
 	private final CellStyle CELL_STYLE_ALIGN_CENTER;
 	private final OutputStream outputStream;
 	private Workbook workbook = null;
-
+	
 	/**
 	 * 
-	 * 
 	 * @param path
-	 * @throws IOException 
+	 * @param mode
+	 * @throws IOException
 	 */
-	public XlsWriter(String path) throws IOException {
+	public XlsWriter(String path, MODE mode) throws IOException {
 		File file = new File(path);
-		if (file.exists() == false) {
+		if (file.exists() == false || mode == MODE.WRITE) {
 			workbook = new HSSFWorkbook();
 		} else {
 			InputStream inputStream = new FileInputStream(file);
@@ -79,6 +83,17 @@ public class XlsWriter {
 		}
 		
 		return true;
+	}
+	
+	public void clearSheet(String sheetName) {
+		Sheet sheet = workbook.getSheet(sheetName);
+		if (sheet != null) {
+			int lastRowNumber = sheet.getLastRowNum();
+			for (int i = lastRowNumber; i >=0 ; --i) {
+				Row row = sheet.getRow(i);
+				sheet.removeRow(row);
+			}
+		}
 	}
 	
 	public void removeSheet(String sheetName) {
@@ -146,5 +161,9 @@ public class XlsWriter {
 		} catch (IOException e) {
 			// no operations
 		}
+	}
+	
+	private void initialize(String path, MODE mode) {
+		
 	}
 }

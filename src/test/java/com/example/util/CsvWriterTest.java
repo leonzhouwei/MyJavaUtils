@@ -22,7 +22,7 @@ public class CsvWriterTest {
 		}
 	}
 	
-//	@Test
+	@Test
 	public void testWriteLines() throws IOException {
 		final String path = "CsvWriterTest.csv";
 		csvWriter = new CsvWriter(path);

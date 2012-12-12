@@ -25,7 +25,7 @@ public class XlsWriterTest {
 		String xlsFilePath = "XlsWriterTest.xls";
 		XlsWriter xlsWriter = null;
 		try {
-			xlsWriter = new XlsWriter(xlsFilePath);
+			xlsWriter = new XlsWriter(xlsFilePath, XlsWriter.MODE.APPEND);
 			String sheetName = "sheet1";
 			List<String> sheetTitles = new ArrayList<String>();
 			String column1Title = "$column1Title";
@@ -44,6 +44,25 @@ public class XlsWriterTest {
 				xlsWriter.close();
 			}
 		}
+	}
+	
+//	@Test
+	public void testClearSheet() {
+		String xlsFilePath = "XlsWriterTest.xls";
+		XlsWriter xlsWriter = null;
+		try {
+			xlsWriter = new XlsWriter(xlsFilePath, XlsWriter.MODE.APPEND);
+			String sheetName = "sheet1";
+			xlsWriter.clearSheet(sheetName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (xlsWriter != null) {
+				xlsWriter.close();
+			}
+		}
+	
 	}
 
 }
