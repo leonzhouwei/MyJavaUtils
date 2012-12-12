@@ -30,7 +30,7 @@ public class XlsWriterTest {
 			List<String> sheetTitles = new ArrayList<String>();
 			String column1Title = "$column1Title";
 			sheetTitles.add(column1Title);
-			boolean createSheetResult = xlsWriter.createSheet(sheetName, null);
+			boolean createSheetResult = xlsWriter.createSheet(sheetName, sheetTitles);
 			System.out.println("createSheetResult: " + createSheetResult);
 			List<String> data = new ArrayList<String>();
 			data.add("lalalala");

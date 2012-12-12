@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -22,7 +23,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class XlsWriter {
 	
 	private final CellStyle CELL_STYLE_ALIGN_CENTER;
-	private final FileOutputStream outputStream;
+	private final OutputStream outputStream;
 	private Workbook workbook = null;
 
 	/**
@@ -96,7 +97,6 @@ public class XlsWriter {
 	 * @throws IOException 
 	 */
 	public boolean append(String sheetName, List<String> data) {
-		
 		if (workbook.getSheet(sheetName) == null) {
 			System.out.println("sheet named with " + sheetName + " does not exist");
 			return false;
