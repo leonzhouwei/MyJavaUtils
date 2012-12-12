@@ -1,5 +1,6 @@
 package main.java.com.example.util;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -42,7 +43,7 @@ public class XlsWriter {
 			inputStream.close();
 		}
 		
-		outputStream = new FileOutputStream(path);
+		outputStream = new BufferedOutputStream(new FileOutputStream(path));
 		CELL_STYLE_ALIGN_CENTER = workbook.createCellStyle();
 		CELL_STYLE_ALIGN_CENTER.setAlignment(CellStyle.ALIGN_CENTER);
 	}
