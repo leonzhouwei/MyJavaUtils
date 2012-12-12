@@ -1,17 +1,26 @@
 package main.java.com.example.util;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import au.com.bytecode.opencsv.ResultSetHelper;
 
 public class CsvWriter {
-
+	
+	public enum MODE {
+		APPEND, WRITE
+	}
+	
 	public static final int size = CSVWriter.INITIAL_STRING_SIZE;
 	public static final char DEFAULT_ESCAPE_CHARACTER = CSVWriter.DEFAULT_ESCAPE_CHARACTER;
 	public static final char DEFAULT_SEPARATOR = CSVWriter.DEFAULT_SEPARATOR;
@@ -20,29 +29,36 @@ public class CsvWriter {
 	public static final char NO_ESCAPE_CHARACTER = CSVWriter.NO_ESCAPE_CHARACTER;
 	public static final String DEFAULT_LINE_END = CSVWriter.DEFAULT_LINE_END;
 
+	private final MODE mode;
 	private CSVWriter csvWriter = null;
 
-	public CsvWriter(String path) throws IOException {
-		initialize(path);
+	public CsvWriter(String path, MODE mode) throws IOException {
+		this.mode = mode;
+		initialize(path, DEFAULT_SEPARATOR);
 	}
 
-	public CsvWriter(String path, char separator) throws IOException {
-		initialize(path);
+	public CsvWriter(String path, MODE mode, char separator) throws IOException {
+		this.mode = mode;
+		initialize(path, separator);
 	}
 
 	public CsvWriter(Writer writer, char separator, char quotechar) {
+		this.mode = MODE.WRITE;
 		csvWriter = new CSVWriter(writer, separator, quotechar);
 	}
 
 	public CsvWriter(Writer writer, char separator, char quotechar, char escapechar) {
+		this.mode = MODE.WRITE;
 		csvWriter = new CSVWriter(writer, separator, quotechar, escapechar);
 	}
 
 	public CsvWriter(Writer writer, char separator, char quotechar, String lineEnd) {
+		this.mode = MODE.WRITE;
 		csvWriter = new CSVWriter(writer, separator, quotechar, lineEnd);
 	}
 
 	public CsvWriter(Writer writer, char separator, char quotechar, char escapechar, String lineEnd) {
+		this.mode = MODE.WRITE;
 		csvWriter = new CSVWriter(writer, separator, quotechar, escapechar, lineEnd);
 	}
 
@@ -97,9 +113,20 @@ public class CsvWriter {
 		csvWriter.writeNext(nextLine);
 	}
 	
-	private void initialize(String path) throws IOException {
+	private void initialize(String path, char separator) throws IOException {
+		File file = new File(path);
+		List<String[]> list = new ArrayList<String[]>(1);
+		if (file.exists() == true && mode == MODE.APPEND) {
+			Reader reader = new FileReader(path);
+			CSVReader csvReader = new CSVReader(reader);
+			list = csvReader.readAll();
+			csvReader.close();
+		}
+		
 		Writer writer = new BufferedWriter(new FileWriter(path));
-		csvWriter = new CSVWriter(writer);
+		csvWriter = new CSVWriter(writer, separator);
+		csvWriter.writeAll(list);
+		csvWriter.flush();
 	}
 
 }

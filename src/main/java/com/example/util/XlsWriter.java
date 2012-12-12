@@ -62,10 +62,8 @@ public class XlsWriter {
 	 */
 	public boolean createSheet(String sheetName, List<String> sheetTitles) throws IOException {
 		if (workbook.getSheet(sheetName) != null) {
-			System.out.println("sheet named with " + sheetName + " already exsits");
 			return false;
 		}
-		System.out.println("new sheet name is: " + sheetName);
 		
 		// create a sheet
 		Sheet sheet = workbook.createSheet(sheetName);
@@ -122,7 +120,6 @@ public class XlsWriter {
 		final int size = data.size();
 		if (size > 0) {
 			int lastRowNumber = sheet.getLastRowNum();
-			System.out.println("lastRowNumber " + lastRowNumber);
 			if (lastRowNumber == Integer.MAX_VALUE) {
 				// if the rows count has reached the upper limit
 				return false;
@@ -133,12 +130,10 @@ public class XlsWriter {
 			} else {
 				newRowNumber = lastRowNumber + 1;
 			}
-			System.out.println("newRowNumber is: " + newRowNumber);
 			Row row = sheet.createRow(newRowNumber);
 			for (int i = 0; i < size; ++i) {
 				Cell cell = row.createCell(i);
 				String value = data.get(i);
-				System.out.println("value is: " + value);
 				cell.setCellValue(value);
 			}
 		}

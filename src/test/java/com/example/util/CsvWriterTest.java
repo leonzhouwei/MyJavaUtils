@@ -11,6 +11,7 @@ import org.junit.Test;
 
 public class CsvWriterTest {
 	
+	private String defaultPath = CsvWriterTest.class.getName() + ".csv";
 	private CsvWriter csvWriter = null;
 	
 	@After
@@ -24,22 +25,28 @@ public class CsvWriterTest {
 	
 	@Test
 	public void testWriteLines() throws IOException {
-		final String path = "CsvWriterTest.csv";
-		csvWriter = new CsvWriter(path);
+		final String path = defaultPath;
+		csvWriter = new CsvWriter(path, CsvWriter.MODE.WRITE);
 		List<List<String>> allLines = new ArrayList<List<String>>();
 		List<String> line1 = new ArrayList<String>();
 		line1.add("1");
 		allLines.add(line1);
 		List<String> line2 = new ArrayList<String>();
 		line2.add("2");
+		line2.add("3");
 		allLines.add(line2);
+		List<String> line3 = new ArrayList<String>();
+		line3.add("4");
+		line3.add("5");
+		line3.add("6");
+		allLines.add(line3);
 		csvWriter.writeLines(allLines);
 	}
 
 //	@Test
 	public void testWriteLineListOfString() throws IOException {
-		final String path = "CsvWriterTest.csv";
-		csvWriter = new CsvWriter(path);
+		final String path = defaultPath;
+		csvWriter = new CsvWriter(path, CsvWriter.MODE.APPEND);
 		List<String> line1 = new ArrayList<String>();
 		line1.add("1");
 		line1.add("2");
@@ -49,8 +56,8 @@ public class CsvWriterTest {
 
 //	@Test
 	public void testWriteLineString() throws IOException {
-		final String path = "CsvWriterTest.csv";
-		csvWriter = new CsvWriter(path);
+		final String path = defaultPath;
+		csvWriter = new CsvWriter(path, CsvWriter.MODE.APPEND);
 		String string = "1";
 		csvWriter.writeLine(string);
 	}

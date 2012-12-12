@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class XlsWriterTest {
+	
+	private String defaultPath = XlsWriterTest.class.getName() + ".xls";
 
 	@Before
 	public void setUp() throws Exception {
@@ -22,20 +24,27 @@ public class XlsWriterTest {
 
 	@Test
 	public void testAppend() {
-		String xlsFilePath = "XlsWriterTest.xls";
+		String xlsFilePath = defaultPath;
 		XlsWriter xlsWriter = null;
 		try {
-			xlsWriter = new XlsWriter(xlsFilePath, XlsWriter.MODE.APPEND);
+			xlsWriter = new XlsWriter(xlsFilePath, XlsWriter.MODE.WRITE);
 			String sheetName = "sheet1";
 			List<String> sheetTitles = new ArrayList<String>();
 			String column1Title = "$column1Title";
 			sheetTitles.add(column1Title);
-			boolean createSheetResult = xlsWriter.createSheet(sheetName, sheetTitles);
-			System.out.println("createSheetResult: " + createSheetResult);
+			xlsWriter.createSheet(sheetName, sheetTitles);
 			List<String> data = new ArrayList<String>();
-			data.add("lalalala");
-			boolean result = xlsWriter.append(sheetName, data);
-			System.out.println("append: " + result);
+			data.add("1");
+			xlsWriter.append(sheetName, data);
+			data = new ArrayList<String>();
+			data.add("2");
+			data.add("3");
+			xlsWriter.append(sheetName, data);
+			data = new ArrayList<String>();
+			data.add("4");
+			data.add("5");
+			data.add("6");
+			xlsWriter.append(sheetName, data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +57,7 @@ public class XlsWriterTest {
 	
 //	@Test
 	public void testClearSheet() {
-		String xlsFilePath = "XlsWriterTest.xls";
+		String xlsFilePath = defaultPath;
 		XlsWriter xlsWriter = null;
 		try {
 			xlsWriter = new XlsWriter(xlsFilePath, XlsWriter.MODE.APPEND);
