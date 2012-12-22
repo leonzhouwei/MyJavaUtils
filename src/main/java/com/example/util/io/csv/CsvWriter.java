@@ -18,12 +18,6 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import au.com.bytecode.opencsv.ResultSetHelper;
 
-/**
- * 
- * 
- * @author Wei Zhou
- *
- */
 public class CsvWriter {
 	
 	public enum MODE {

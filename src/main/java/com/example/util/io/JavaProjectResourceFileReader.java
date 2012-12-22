@@ -36,11 +36,7 @@ import java.io.UnsupportedEncodingException;
  *         |-- resources
  *             |-- conf
  *                 |-- test.txt
- *     
- * @author Leon
- *
  */
-
 public class JavaProjectResourceFileReader {
 	
 	public static final String CHAR_SET_NAME_UTF_8 = "UTF-8";
