@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 /**
+ * read a resource file(in UTF-8 char set) in the resource directory of a Java project 
+ * 
  * 源代码的文件结构，JavaProjectResourceFileReader.java 的包名为 main.java.com.example.util
  * 
  * src
@@ -41,7 +43,7 @@ import java.io.UnsupportedEncodingException;
 
 public class JavaProjectResourceFileReader {
 	
-	public static final String CHAR_SET_UTF_8 = "UTF-8";
+	public static final String CHAR_SET_NAME_UTF_8 = "UTF-8";
 	
 	public static void main(String[] args) {
 		try {
@@ -49,7 +51,7 @@ public class JavaProjectResourceFileReader {
 			InputStream inputStream = JavaProjectResourceFileReader.class.getResourceAsStream(name);
 			
 			// set char set as utf-8
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, CHAR_SET_UTF_8);
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, CHAR_SET_NAME_UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			
 			// read the file

@@ -1,11 +1,13 @@
 package main.java.com.example.util.io.csv;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStreamReader;
 import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,12 +18,19 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import au.com.bytecode.opencsv.ResultSetHelper;
 
+/**
+ * 
+ * 
+ * @author Wei Zhou
+ *
+ */
 public class CsvWriter {
 	
 	public enum MODE {
 		APPEND, WRITE
 	}
-	
+
+	public static final String CHAR_SET_NAME_UTF_8 = "UTF-8";
 	public static final int size = CSVWriter.INITIAL_STRING_SIZE;
 	public static final char DEFAULT_ESCAPE_CHARACTER = CSVWriter.DEFAULT_ESCAPE_CHARACTER;
 	public static final char DEFAULT_SEPARATOR = CSVWriter.DEFAULT_SEPARATOR;
@@ -33,6 +42,16 @@ public class CsvWriter {
 	private final MODE mode;
 	private CSVWriter csvWriter = null;
 
+	public CsvWriter(String path, MODE mode, String charSetName) throws IOException {
+		this.mode = mode;
+		initialize(path, DEFAULT_SEPARATOR, charSetName);
+	}
+
+	public CsvWriter(String path, MODE mode, char separator, String charSetName) throws IOException {
+		this.mode = mode;
+		initialize(path, separator, charSetName);
+	}
+	
 	public CsvWriter(String path, MODE mode) throws IOException {
 		this.mode = mode;
 		initialize(path, DEFAULT_SEPARATOR);
@@ -42,7 +61,7 @@ public class CsvWriter {
 		this.mode = mode;
 		initialize(path, separator);
 	}
-
+	
 	public CsvWriter(Writer writer, char separator, char quotechar) {
 		this.mode = MODE.WRITE;
 		csvWriter = new CSVWriter(writer, separator, quotechar);
@@ -114,12 +133,26 @@ public class CsvWriter {
 		csvWriter.writeNext(nextLine);
 	}
 	
+	private void initialize(String path, char separator, String charSetName) throws IOException {
+		File file = new File(path);
+		List<String[]> list = new ArrayList<String[]>(1);
+		if (file.exists() == true && mode == MODE.APPEND) {
+			CSVReader csvReader = new CSVReader(new BufferedReader(new InputStreamReader(new FileInputStream(path), charSetName)));
+			list = csvReader.readAll();
+			csvReader.close();
+		}
+		
+		Writer writer = new BufferedWriter(new FileWriter(path));
+		csvWriter = new CSVWriter(writer, separator);
+		csvWriter.writeAll(list);
+		csvWriter.flush();
+	}
+	
 	private void initialize(String path, char separator) throws IOException {
 		File file = new File(path);
 		List<String[]> list = new ArrayList<String[]>(1);
 		if (file.exists() == true && mode == MODE.APPEND) {
-			Reader reader = new FileReader(path);
-			CSVReader csvReader = new CSVReader(reader);
+			CSVReader csvReader = new CSVReader(new BufferedReader(new FileReader(path)));
 			list = csvReader.readAll();
 			csvReader.close();
 		}
