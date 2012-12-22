@@ -1,10 +1,10 @@
-package test.java.com.example.util;
+package test.java.com.example.util.io.csv;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.example.util.CsvWriter;
+import main.java.com.example.util.io.csv.CsvWriter;
 
 import org.junit.After;
 import org.junit.Test;

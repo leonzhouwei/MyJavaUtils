@@ -1,4 +1,4 @@
-package test.java.com.example.util;
+package test.java.com.example.util.io.csv;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

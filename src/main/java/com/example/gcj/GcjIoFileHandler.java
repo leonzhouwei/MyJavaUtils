@@ -10,6 +10,7 @@ import java.io.IOException;
 public class GcjIoFileHandler {
 
 	public static final String OUTPUT_CASE_HEADER = "Case #";
+	
 	private String mInputFilePath = null;
 	private String mOutputFilePath = null;
 	private BufferedReader mBufferedReader = null;
