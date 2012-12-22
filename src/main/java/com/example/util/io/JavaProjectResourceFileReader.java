@@ -56,7 +56,7 @@ public class JavaProjectResourceFileReader {
 			
 			// read the file
 			String string = null;
-			while ( (string=bufferedReader.readLine()) != null) {
+			while ( (string=bufferedReader.readLine()) != null ) {
 				System.out.println(string);
 			}
 			

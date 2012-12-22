@@ -60,6 +60,7 @@ public class GcjIoFileHandler {
 				System.out.println(s);
 				gcj.writeLine(s);
 			}
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

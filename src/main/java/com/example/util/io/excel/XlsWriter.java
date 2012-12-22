@@ -157,8 +157,5 @@ public class XlsWriter {
 			// no operations
 		}
 	}
-	
-	private void initialize(String path, MODE mode) {
-		
-	}
+
 }
