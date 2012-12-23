@@ -12,15 +12,15 @@ import java.io.OutputStreamWriter;
 public class GcjIoFileHandler {
 
 	public static final String OUTPUT_CASE_HEADER = "Case #";
-	public static final String CHAR_SET_NAME_UTF_8 = "UTF-8";
+	public static final String CHARSET_NAME_UTF_8 = "UTF-8";
 
 	private BufferedReader mBufferedReader = null;
 	private BufferedWriter mBufferedWriter = null;
 	private Integer caseNumber = 1;
 
 	public GcjIoFileHandler(String inputFilePath, String outputFilePath) throws FileNotFoundException, IOException {
-		mBufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFilePath), CHAR_SET_NAME_UTF_8));
-		mBufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFilePath), CHAR_SET_NAME_UTF_8));
+		mBufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFilePath), CHARSET_NAME_UTF_8));
+		mBufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFilePath), CHARSET_NAME_UTF_8));
 	}
 
 	public String readLine() throws IOException {

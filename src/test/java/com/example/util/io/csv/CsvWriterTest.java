@@ -26,7 +26,7 @@ public class CsvWriterTest {
 	@Test
 	public void testWriteLines() throws IOException {
 		final String path = defaultPath;
-		csvWriter = new CsvWriter(path, CsvWriter.MODE.WRITE, CsvWriter.CHAR_SET_NAME_UTF_8);
+		csvWriter = new CsvWriter(path, CsvWriter.MODE.WRITE, CsvWriter.CHARSET_NAME_UTF_8);
 		List<List<String>> allLines = new ArrayList<List<String>>();
 		List<String> line1 = new ArrayList<String>();
 		line1.add("1");
@@ -46,7 +46,7 @@ public class CsvWriterTest {
 //	@Test
 	public void testWriteLineListOfString() throws IOException {
 		final String path = defaultPath;
-		csvWriter = new CsvWriter(path, CsvWriter.MODE.APPEND, CsvWriter.CHAR_SET_NAME_UTF_8);
+		csvWriter = new CsvWriter(path, CsvWriter.MODE.APPEND, CsvWriter.CHARSET_NAME_UTF_8);
 		List<String> line1 = new ArrayList<String>();
 		line1.add("1");
 		line1.add("2");
@@ -57,7 +57,7 @@ public class CsvWriterTest {
 //	@Test
 	public void testWriteLineString() throws IOException {
 		final String path = defaultPath;
-		csvWriter = new CsvWriter(path, CsvWriter.MODE.APPEND, CsvWriter.CHAR_SET_NAME_UTF_8);
+		csvWriter = new CsvWriter(path, CsvWriter.MODE.APPEND, CsvWriter.CHARSET_NAME_UTF_8);
 		String string = "1";
 		csvWriter.writeLine(string);
 	}

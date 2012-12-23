@@ -24,7 +24,7 @@ public class CsvWriter {
 		APPEND, WRITE
 	}
 
-	public static final String CHAR_SET_NAME_UTF_8 = "UTF-8";
+	public static final String CHARSET_NAME_UTF_8 = "UTF-8";
 	public static final int size = CSVWriter.INITIAL_STRING_SIZE;
 	public static final char DEFAULT_ESCAPE_CHARACTER = CSVWriter.DEFAULT_ESCAPE_CHARACTER;
 	public static final char DEFAULT_SEPARATOR = CSVWriter.DEFAULT_SEPARATOR;
@@ -36,14 +36,14 @@ public class CsvWriter {
 	private final MODE mode;
 	private CSVWriter csvWriter = null;
 
-	public CsvWriter(String path, MODE mode, String charSetName) throws IOException {
+	public CsvWriter(String path, MODE mode, String charsetName) throws IOException {
 		this.mode = mode;
-		initialize(path, DEFAULT_SEPARATOR, charSetName);
+		initialize(path, DEFAULT_SEPARATOR, charsetName);
 	}
 
-	public CsvWriter(String path, MODE mode, char separator, String charSetName) throws IOException {
+	public CsvWriter(String path, MODE mode, char separator, String charsetName) throws IOException {
 		this.mode = mode;
-		initialize(path, separator, charSetName);
+		initialize(path, separator, charsetName);
 	}
 	
 	public CsvWriter(String path, MODE mode) throws IOException {

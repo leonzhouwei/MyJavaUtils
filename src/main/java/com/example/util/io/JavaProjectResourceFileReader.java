@@ -39,7 +39,7 @@ import java.io.UnsupportedEncodingException;
  */
 public class JavaProjectResourceFileReader {
 	
-	public static final String CHAR_SET_NAME_UTF_8 = "UTF-8";
+	public static final String CHARSET_NAME_UTF_8 = "UTF-8";
 	
 	public static void main(String[] args) {
 		try {
@@ -47,7 +47,7 @@ public class JavaProjectResourceFileReader {
 			InputStream inputStream = JavaProjectResourceFileReader.class.getResourceAsStream(name);
 			
 			// set char set as utf-8
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, CHAR_SET_NAME_UTF_8);
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream, CHARSET_NAME_UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			
 			// read the file
