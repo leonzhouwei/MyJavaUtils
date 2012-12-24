@@ -1,4 +1,4 @@
-package main.java.com.example.util.io;
+package com.example.util.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,9 +12,9 @@ import java.io.UnsupportedEncodingException;
  * 源代码的文件结构，JavaProjectResourceFileReader.java 的包名为 main.java.com.example.util
  * 
  * src
- *     |-- main // 此为顶包
+ *     |-- main
  *         |-- java
- *         |    |-- com
+ *         |    |-- com // 此为顶包
  *         |        |-- example
  *         |            |-- util
  *         |                |-- JavaProjectResourceFileReader.java
@@ -43,7 +43,7 @@ public class JavaProjectResourceFileReader {
 	
 	public static void main(String[] args) {
 		try {
-			String name = "/main/resources/conf/test.txt";
+			String name = "/conf/test.txt";
 			InputStream inputStream = JavaProjectResourceFileReader.class.getResourceAsStream(name);
 			
 			// set char set as utf-8

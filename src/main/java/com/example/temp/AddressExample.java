@@ -1,4 +1,4 @@
-package main.java.com.example.temp;
+package com.example.temp;
 
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;

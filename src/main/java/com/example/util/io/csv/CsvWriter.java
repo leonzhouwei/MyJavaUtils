@@ -1,4 +1,4 @@
-package main.java.com.example.util.io.csv;
+package com.example.util.io.csv;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

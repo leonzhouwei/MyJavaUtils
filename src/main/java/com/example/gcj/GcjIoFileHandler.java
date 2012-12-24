@@ -1,4 +1,4 @@
-package main.java.com.example.gcj;
+package com.example.gcj;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

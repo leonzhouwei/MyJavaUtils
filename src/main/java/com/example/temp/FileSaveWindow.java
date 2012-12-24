@@ -1,4 +1,4 @@
-package main.java.com.example.temp;
+package com.example.temp;
 
 import java.io.File;
 import javax.swing.JButton;

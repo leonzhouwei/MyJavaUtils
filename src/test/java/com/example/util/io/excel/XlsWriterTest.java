@@ -1,14 +1,15 @@
-package test.java.com.example.util.io.excel;
+package com.example.util.io.excel;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.example.util.io.excel.XlsWriter;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.example.util.io.excel.XlsWriter;
 
 public class XlsWriterTest {
 	
